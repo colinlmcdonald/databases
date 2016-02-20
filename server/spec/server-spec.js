@@ -34,29 +34,34 @@ describe("Persistent Node Chat Server", function() {
               uri: "http://127.0.0.1:3000/classes/users",
               json: { username: "Valjean" }
     }, function () {
+      console.log('made it to the message POST');
       // Post a message to the node chat server:
       request({ method: "POST",
               uri: "http://127.0.0.1:3000/classes/messages",
               json: {
                 username: "Valjean",
-                message: "In mercy's name, three days is all I need.",
+                message: "In mercys name, three days is all I need.",
                 roomname: "Hello"
               }
       }, function () {
+
         // Now if we look in the database, we should find the
         // posted message there.
 
         // TODO: You might have to change this test to get all the data from
         // your message table, since this is schema-dependent.
+        //querystring gets all the data from our messages table
         var queryString = "SELECT * FROM messages";
         var queryArgs = [];
 
+        //expects one thing to come back, results array with one object
+        //that object has a 'message' key, corresponding value is the
         dbConnection.query(queryString, queryArgs, function(err, results) {
           // Should have one result:
           expect(results.length).to.equal(1);
-
+          //expects the 
           // TODO: If you don't have a column named text, change this test.
-          expect(results[0].message).to.equal("In mercy's name, three days is all I need.");
+          expect(results[0].message).to.equal("In mercys name, three days is all I need.");
 
           done();
         });
@@ -70,6 +75,8 @@ describe("Persistent Node Chat Server", function() {
     // TODO - The exact query string and query args to use
     // here depend on the schema you design, so I'll leave
     // them up to you. */
+    var queryString = 'SELECT * FROM messages';
+    var queryArgs = [];
 
     dbConnection.query(queryString, queryArgs, function(err) {
       if (err) { throw err; }
