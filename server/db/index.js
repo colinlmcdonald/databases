@@ -12,4 +12,6 @@ exports.connection = mysql.createConnection({
 // this.connection.connect(function(err) {
 //   if (err) throw err
 //   console.log('You are now connected...')
-this.connection.connect();
+this.connection.connect(function(err, results) {
+  //run the callback in here
+});

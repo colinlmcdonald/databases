@@ -10,11 +10,13 @@ module.exports = {
     // Ditto as above.
     get: function () {},
     post: function (user) {
-      console.log('THIS IS CONNECTION QQQQQQ', connection);
-      connection.query('INSERT INTO messages VALUES ?', user);
+      var parsedUser = user;
+      console.log(user);
+      //console.log('THIS IS CONNECTION QQQQQQ', Object.keys(connection.connection));
+      connection.connection.query('INSERT INTO messages (username) VALUES (?)', user);
 
       //doesnt seem like it's connection, probably the .query
-
+      //check asynch with database connection
 
 
       //console.log(Object.keys(req));
