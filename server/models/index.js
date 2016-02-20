@@ -1,7 +1,4 @@
-var db = require('../db');
-
-
-
+var connection = require('../db/index.js');
 
 module.exports = {
   messages: {
@@ -12,7 +9,17 @@ module.exports = {
   users: {
     // Ditto as above.
     get: function () {},
-    post: function () {}
+    post: function (user) {
+      console.log('THIS IS CONNECTION QQQQQQ', connection);
+      connection.query('INSERT INTO messages VALUES ?', user);
+
+      //doesnt seem like it's connection, probably the .query
+
+
+
+      //console.log(Object.keys(req));
+      //console.log(user);
+    }
   }
 };
 

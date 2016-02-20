@@ -9,4 +9,7 @@ exports.connection = mysql.createConnection({
   password : "",
   database: "chat"
 });
+// this.connection.connect(function(err) {
+//   if (err) throw err
+//   console.log('You are now connected...')
 this.connection.connect();
